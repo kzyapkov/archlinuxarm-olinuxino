@@ -1,3 +1,4 @@
+# Maintainer: Kiril Zyapkov <kiril.zyapkov@gmail.com>
 
 # iMX233-OLinuXino-Maxi kernel for archlinuxarm
 # basically replicates the oe-recipe
@@ -7,7 +8,7 @@ plugrel=1
 noautobuild=1
 
 pkgbase="kernel26"
-pkgname=('kernel26-imx233-olinuxino' 'kernel26-headers-imx233-olinuxino')
+pkgname=('kernel26-olinuxino' 'kernel26-headers-olinuxino')
 _kernelname=${pkgname#kernel26}
 _basekernel=2.6
 pkgver=${_basekernel}.35.3
@@ -23,6 +24,7 @@ url="https://github.com/Freescale/meta-fsl-arm/"
 source=(config
         0002-cgroupfs-create-sys-fs-cgroup-to-mount-cgroupfs-on.patch
         egalax_ts-enable-single-event-support.patch
+        NFS-Fix-nfsroot-support.patch
         NFS-allow-nfs-root-mount-to-use-alternate-rpc-ports.patch
         1130-ENGR00157473-MX5X-UART-disable-UART2-DMA-to-make-G.patch
         1132-ENGR00155891-mx53_loco-enable-mc34708-s-WDI-functio.patch
@@ -40,12 +42,14 @@ source=(config
         1147-ENGR00170244-2-ARM-AHCI-Enable-PDDQ-mode-when-no-d.patch
         no-unaligned-access.patch
         mx28-removecpufreq.patch
-        0001-mx53_loco-add-USR-led-support.patch
-        001_Add_accept4_syscall.patch
-        002_Return_ERESTARTSYS_from_IPU_GET_EVENT.patch
-        003_Sanitise_ipu_interrupt_return_value.patch
+        mxs-duart-use-ttyAMA-for-device-name.patch
+        w1-fix-support-multiple-master.patch
         smsc95xx-randomize-mac-once.patch
-        imx233-olinuxino.patch)
+        dm9601-support-for-usb-ethernet-0x0fe6-0x9700.patch
+        wire-up-sys_accept4-on-ARM.patch
+        0001-mx53_loco-add-USR-led-support.patch
+        002_Return_ERESTARTSYS_from_IPU_GET_EVENT.patch
+        003_Sanitise_ipu_interrupt_return_value.patch)
     
   
 __gitname="linux-2.6-imx"
@@ -108,11 +112,10 @@ build() {
   cp ${srcdir}/config .config
 
   # set extraversion to pkgrel
-  #sed -ri "s|^(EXTRAVERSION =).*|\1 -${pkgrel}|" Makefile
+  sed -ri "s|^(EXTRAVERSION =).*|\1 -${pkgrel}|" Makefile
 
   # Configure the kernel. Replace the line below with one of your choice.
-  
-  make menuconfig # CLI menu for configuration
+  #make menuconfig # CLI menu for configuration
   #make nconfig # new CLI menu for configuration
   #make oldconfig # using old config from previous kernel version
 
@@ -121,7 +124,7 @@ build() {
   make ${MAKEFLAGS} uImage modules
 }
 
-package_kernel26-imx233-olinuxino() {
+package_kernel26-olinuxino() {
   pkgdesc="The Linux Kernel and modules for iMX233-OLinuXino-Maxi"
   groups=('base')
   depends=('coreutils' 'module-init-tools')
@@ -143,16 +146,16 @@ package_kernel26-imx233-olinuxino() {
   cp arch/$KARCH/boot/uImage ${pkgdir}/boot/uImage
   
   # set correct depmod command for install
-  sed
-    -e  "s/KERNEL_NAME=.*/KERNEL_NAME=${_kernelname}/g"
-    -e  "s/KERNEL_VERSION=.*/KERNEL_VERSION=${_kernver}/g"
+  sed \
+    -e  "s/KERNEL_NAME=.*/KERNEL_NAME=${_kernelname}/g" \
+    -e  "s/KERNEL_VERSION=.*/KERNEL_VERSION=${_kernver}/g" \
     -i $startdir/kernel26.install
 
   # remove build and source links
   rm -f ${pkgdir}/lib/modules/${_kernver}/{source,build}
 }
 
-package_kernel26-headers-imx233-olinuxino() {
+package_kernel26-headers-olinuxino() {
   pkgdesc="Header files and scripts for building modules for kernel26 for iMX233-OLinuXino-Maxi"
   provides=("kernel26-headers=${pkgver}")
   KARCH=arm
@@ -162,11 +165,11 @@ package_kernel26-headers-imx233-olinuxino() {
   ln -sf ../../../usr/src/linux-${_kernver} build
   
   cd ${srcdir}/linux-$_basekernel
-  install -D -m644 Makefile
+  install -D -m644 Makefile \
     ${pkgdir}/usr/src/linux-${_kernver}/Makefile
-  install -D -m644 kernel/Makefile
+  install -D -m644 kernel/Makefile \
     ${pkgdir}/usr/src/linux-${_kernver}/kernel/Makefile
-  install -D -m644 .config
+  install -D -m644 .config \
     ${pkgdir}/usr/src/linux-${_kernver}/.config
   mkdir -p ${pkgdir}/usr/src/linux-${_kernver}/include
 
