@@ -270,9 +270,10 @@ package_kernel26-headers-olinuxino() {
   rm -rf ${pkgdir}/usr/src/linux-${_kernver}/arch/{alpha,avr32,blackfin,cris,frv,h8300,ia64,m32r,m68k,m68knommu,mips,microblaze,mn10300,parisc,powerpc,ppc,s390,sh,sh64,sparc,sparc64,um,v850,xtensa,x86}
   }
 
-md5sums=('23f08df6d6dde13d080aa759b05b6c89'
+md5sums=('02e927e9c39fb1f990b6bb0481691a51'
          'bde087470cb0715ca709bd5bcd3803d0'
          'ef8a1cf2d129de1a0a476a0b40e6f291'
+         'e086ab0b162d292549f9bf453e07ad2e'
          'ff1281a87da6f8093992ad70d23e71d2'
          '5e66409616ff8b83d6c4da27b7a20524'
          '8bd2ccc655534a3954c7c4627504b983'
@@ -290,10 +291,13 @@ md5sums=('23f08df6d6dde13d080aa759b05b6c89'
          'dd5fdabdf2c8609fbd8752c42f5773c2'
          'bcba9216d3414a9de22b7d4fb24853e1'
          'c2d9dba73587fd00d990a2521428d67b'
+         '302ad0fe4e990c789793e25ced58f712'
+         'c8894e44904cc1365e7110eb04aea1d6'
+         '14ec6ec6f9de8d1fd0333024481541af'
+         'f0ebf1f2dbfa4030ba3945fea97710a1'
+         '1d38c32d1d5348ef24745b2f38b0f040'
          '1bf553ee320c43a8e0941274bcdb4bf2'
-         '8a341ce8c630c58e16ff33c9d2615b74'
          'be34abb50266df17160dd1c6170299f4'
          '06d9896eb871dabcdb91b5f1a15bffdf'
-         '14ec6ec6f9de8d1fd0333024481541af'
-         'db9af57356d391a1b0d34a011df49ab8')
+         'd02c1a4f67a2e5680b7e23cc5a1998cd')
 
