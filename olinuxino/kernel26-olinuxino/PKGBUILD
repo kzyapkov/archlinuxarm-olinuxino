@@ -124,7 +124,7 @@ build() {
 
   # Build!
 
-  make ${MAKEFLAGS} uImage modules
+  make ${MAKEFLAGS} zImage modules
 }
 
 package_kernel26-olinuxino() {
@@ -148,6 +148,7 @@ package_kernel26-olinuxino() {
   make INSTALL_MOD_PATH=${pkgdir} modules_install
   #cp arch/$KARCH/boot/uImage ${pkgdir}/boot/uImage
   cp arch/$KARCH/boot/zImage ${pkgdir}/boot/zImage
+  cp .config ${pkgdir}/boot/config-${_kernver}
   
   
   # set correct depmod command for install
@@ -270,7 +271,7 @@ package_kernel26-headers-olinuxino() {
 
   # remove unneeded architectures
   rm -rf ${pkgdir}/usr/src/linux-${_kernver}/arch/{alpha,avr32,blackfin,cris,frv,h8300,ia64,m32r,m68k,m68knommu,mips,microblaze,mn10300,parisc,powerpc,ppc,s390,sh,sh64,sparc,sparc64,um,v850,xtensa,x86}
-  }
+}
 
 md5sums=('1d6fe3459691cb4903f74bd0564bed54'
          'bde087470cb0715ca709bd5bcd3803d0'
