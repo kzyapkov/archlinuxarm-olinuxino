@@ -49,7 +49,8 @@ source=(config
         wire-up-sys_accept4-on-ARM.patch
         0001-mx53_loco-add-USR-led-support.patch
         002_Return_ERESTARTSYS_from_IPU_GET_EVENT.patch
-        003_Sanitise_ipu_interrupt_return_value.patch)
+        003_Sanitise_ipu_interrupt_return_value.patch
+        imx233-olinuxino.patch)
     
   
 __gitname="linux-2.6-imx"
@@ -79,6 +80,7 @@ build() {
   # i.MX233 support patches from Freescale
   patch -Np1 -i ../0002-cgroupfs-create-sys-fs-cgroup-to-mount-cgroupfs-on.patch
   patch -Np1 -i ../egalax_ts-enable-single-event-support.patch
+  patch -Np1 -i ../NFS-Fix-nfsroot-support.patch
   patch -Np1 -i ../NFS-allow-nfs-root-mount-to-use-alternate-rpc-ports.patch
   patch -Np1 -i ../1130-ENGR00157473-MX5X-UART-disable-UART2-DMA-to-make-G.patch
   patch -Np1 -i ../1132-ENGR00155891-mx53_loco-enable-mc34708-s-WDI-functio.patch
@@ -96,13 +98,14 @@ build() {
   patch -Np1 -i ../1147-ENGR00170244-2-ARM-AHCI-Enable-PDDQ-mode-when-no-d.patch
   patch -Np1 -i ../no-unaligned-access.patch
   patch -Np1 -i ../mx28-removecpufreq.patch
+  patch -Np1 -i ../mxs-duart-use-ttyAMA-for-device-name.patch
+  patch -Np1 -i ../w1-fix-support-multiple-master.patch
+  patch -Np1 -i ../smsc95xx-randomize-mac-once.patch
+  patch -Np1 -i ../dm9601-support-for-usb-ethernet-0x0fe6-0x9700.patch
+  patch -Np1 -i ../wire-up-sys_accept4-on-ARM.patch
   patch -Np1 -i ../0001-mx53_loco-add-USR-led-support.patch
-  patch -Np1 -i ../001_Add_accept4_syscall.patch
   patch -Np1 -i ../002_Return_ERESTARTSYS_from_IPU_GET_EVENT.patch
   patch -Np1 -i ../003_Sanitise_ipu_interrupt_return_value.patch
-  
-  # randomize the MAC only once, a rc.d script will keep it constant
-  patch -Np1 -i ../smsc95xx-randomize-mac-once.patch
   
   # board-specific patch
   patch -Np1 -i ../imx233-olinuxino.patch
