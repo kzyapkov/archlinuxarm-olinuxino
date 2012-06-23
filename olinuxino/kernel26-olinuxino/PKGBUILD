@@ -54,7 +54,7 @@ source=(config
     
   
 __gitname="linux-2.6-imx"
-__gitroot="git://git.freescale.com/imx/linux-2.6-imx.git"
+__gitroot="git://git.freescale.com/imx/${__gitname}.git"
 __gittag="rel_imx_2.6.35_11.09.01"
 __gitcommit="691c08adeed64d5153937a0e31aaf4c251924471"
 
@@ -140,13 +140,15 @@ package_kernel26-olinuxino() {
   install=kernel26.install
   KARCH=arm
 
-  cd ${srcdir}/${_gitname}
+  cd ${srcdir}/${__gitname}
   
   # get kernel version
   _kernver="$(make kernelrelease)"
   mkdir -p ${pkgdir}/{lib/modules,lib/firmware,boot}
   make INSTALL_MOD_PATH=${pkgdir} modules_install
-  cp arch/$KARCH/boot/uImage ${pkgdir}/boot/uImage
+  #cp arch/$KARCH/boot/uImage ${pkgdir}/boot/uImage
+  cp arch/$KARCH/boot/zImage ${pkgdir}/boot/zImage
+  
   
   # set correct depmod command for install
   sed \
@@ -167,7 +169,7 @@ package_kernel26-headers-olinuxino() {
   cd ${pkgdir}/lib/modules/${_kernver}
   ln -sf ../../../usr/src/linux-${_kernver} build
   
-  cd ${srcdir}/linux-$_basekernel
+  cd ${srcdir}/${__gitname}
   install -D -m644 Makefile \
     ${pkgdir}/usr/src/linux-${_kernver}/Makefile
   install -D -m644 kernel/Makefile \
