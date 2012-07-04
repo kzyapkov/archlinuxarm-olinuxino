@@ -149,8 +149,7 @@ package_kernel26-olinuxino() {
   #cp arch/$KARCH/boot/uImage ${pkgdir}/boot/uImage
   cp arch/$KARCH/boot/zImage ${pkgdir}/boot/zImage
   cp .config ${pkgdir}/boot/config-${_kernver}
-  
-  
+
   # set correct depmod command for install
   sed \
     -e  "s/KERNEL_NAME=.*/KERNEL_NAME=${_kernelname}/g" \
@@ -165,6 +164,21 @@ package_kernel26-headers-olinuxino() {
   pkgdesc="Header files and scripts for building modules for kernel26 for iMX233-OLinuXino-Maxi"
   provides=("kernel26-headers=${pkgver}")
   KARCH=arm
+
+  # get kernel version
+  _kernver="$(make kernelrelease)"
+
+  make INSTALL_HDR_PATH=${pkgdir}/usr/src/linux-${_kernver} headers_install
+}
+
+# the more complicated version I do not understand ...
+package_kernel26-headers-olinuxino_() {
+  pkgdesc="Header files and scripts for building modules for kernel26 for iMX233-OLinuXino-Maxi"
+  provides=("kernel26-headers=${pkgver}")
+  KARCH=arm
+
+  # get kernel version
+  _kernver="$(make kernelrelease)"
   
   mkdir -p ${pkgdir}/lib/modules/${_kernver}
   cd ${pkgdir}/lib/modules/${_kernver}
