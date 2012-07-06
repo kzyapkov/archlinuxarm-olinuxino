@@ -26,6 +26,8 @@ package() {
     install -D -m 755 $srcdir/$pkgname-$pkgver/bld/linux/elftosb $pkgdir/usr/local/bin/ || return 1
     install -D -m 755 $srcdir/$pkgname-$pkgver/bld/linux/keygen $pkgdir/usr/local/bin/ || return 1
     install -D -m 755 $srcdir/$pkgname-$pkgver/bld/linux/sbtool $pkgdir/usr/local/bin/ || return 1
+    cd $pkgdir/usr/local/bin
+    ln -sf elftosb elftosb2
 }
 
 # vim:set ts=2 sw=2 et:
