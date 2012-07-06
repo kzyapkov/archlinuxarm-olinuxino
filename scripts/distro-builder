@@ -15,7 +15,7 @@
 # Agree to installing packages and answer "y" to cleaning the Pacman database.
 #
 # ==== Variables to set ====
-INSTALLEDPKGS="bash bzip2 coreutils cronie cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip heirloom-mailx inetutils initscripts iputils jfsutils less licenses logrotate lvm2 man-db man-pages mdadm nano pacman pacman-mirrorlist pciutils perl ppp procps-ng psmisc reiserfsprogs sed shadow sysfsutils syslog-ng sysvinit tar tcp_wrappers texinfo usbutils util-linux vi wget which wpa_supplicant xfsprogs openssh openssl kernel26-olinuxino kernel26-headers-olinuxino openntpd"
+INSTALLEDPKGS="bash bzip2 coreutils cronie cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip heirloom-mailx inetutils initscripts iputils jfsutils less licenses logrotate lvm2 man-db man-pages mdadm nano pacman pacman-mirrorlist pciutils perl ppp procps-ng psmisc reiserfsprogs sed shadow sysfsutils syslog-ng sysvinit tar tcp_wrappers texinfo usbutils util-linux vi wget which wpa_supplicant xfsprogs openssh openssl elftosb imx-bootlets-olinuxino kernel26-olinuxino openntpd"
 RELEASEVER=$(date -u +%Y.%m)
 MAKETARGZ=1
 HERE=$( cd "$( dirname "$0" )" && pwd )
@@ -28,6 +28,9 @@ pacman -Syyf --noconfirm --noprogressbar --config ${HERE}/pacman.conf -r $1 $INS
 # TODO: patch instead
 install --group=root --owner=root --mode=0644 ${HERE}/pacman.conf $1/etc/pacman.conf
 install --group=root --owner=root --mode=0644 ${HERE}/inittab $1/etc/inittab
+install --group=root --owner=root --mode=0644 ${HERE}/set-olinuxino-mac $1/etc/rc.d/set-olinuxino-mac
+install --group=root --owner=root --mode=0644 ${HERE}/rc.conf $1/etc/rc.conf
+
 
 echo -e "\033[1mSetting the password to 'root' and cleaning up:\033[0m"
 echo -e "root\nroot\n" | chroot $1/ /usr/bin/passwd root
@@ -48,7 +51,7 @@ echo $RELEASEVER > $1/etc/alarm-version
 if [ $MAKETARGZ = 1 ]; then
      echo  -e "\033[1mCreating a rootfs.tar.gz...\033[0m"
      cd $1
-     tar czf ../PlugApps-Linux-$RELEASEVER-rootfs.tar.gz ./*
+     tar czf ../olinuxino-alarm-$RELEASEVER-rootfs.tar.gz ./*
      cd ../
 else
      echo -e "\033[1mNot creating a rootfs.tar.gz...\033[0m"

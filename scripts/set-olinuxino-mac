@@ -1,0 +1,43 @@
+#!/bin/bash
+. /etc/rc.conf
+. /etc/rc.d/functions
+
+INTERFACE=usb0
+MAC_FILE="/usr/local/mac_addr"
+
+if [ ! -r $MAC_FILE ]
+then
+    ifconfig $INTERFACE up
+    cat /sys/class/net/$INTERFACE/address > $MAC_FILE
+    ifconfig $INTERFACE down
+fi
+
+MAC_ADDR=`cat $MAC_FILE`
+
+case "$1" in
+start)
+        stat_busy "Setting MAC address to $MAC_ADDR"
+	ifconfig $INTERFACE down
+        if ifconfig $INTERFACE hw ether $MAC_ADDR
+        then
+		ifconfig $INTERFACE up
+                stat_done
+		ifconfig $INTERFACE up
+        else
+		ifconfig $INTERFACE up
+                stat_fail
+		ifconfig $INTERFACE up
+        fi
+        ;;
+stop)
+        stat_busy 'Move along...'
+        stat_done
+        ;;
+restart)
+        $0 stop
+        $0 start
+        ;;
+*)
+        echo "Usage: $0 {start|stop|restart}"
+esac
+
