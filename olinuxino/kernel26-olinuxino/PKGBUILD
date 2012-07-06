@@ -14,6 +14,8 @@ _basekernel=2.6
 pkgver=${_basekernel}.35.3
 pkgrel=1
 makedepends=('xmlto' 'docbook-xsl' 'uboot-mkimage' 'make' 'git')
+optdepends=('elftosb: to install the kernel' 
+            'imx-bootlets-olinuxino:  to install the kernel')
 options=('!strip' '!buildflags' '!makeflags')
 arch=('arm')
 CARCH=arm
