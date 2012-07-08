@@ -15,7 +15,7 @@
 # Agree to installing packages and answer "y" to cleaning the Pacman database.
 #
 # ==== Variables to set ====
-INSTALLEDPKGS="bash bzip2 coreutils cronie cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip heirloom-mailx inetutils initscripts iputils jfsutils less licenses logrotate lvm2 man-db man-pages mdadm nano pacman pacman-mirrorlist pciutils perl ppp procps-ng psmisc reiserfsprogs sed shadow sysfsutils syslog-ng sysvinit tar tcp_wrappers texinfo usbutils util-linux vi wget which wpa_supplicant xfsprogs openssh openssl elftosb imx-bootlets-olinuxino kernel26-olinuxino openntpd"
+INSTALLEDPKGS="bash bzip2 coreutils cronie cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip heirloom-mailx inetutils initscripts iputils jfsutils less licenses logrotate lvm2 man-db man-pages mdadm nano pacman pacman-mirrorlist pciutils perl ppp procps-ng psmisc reiserfsprogs sed shadow sysfsutils syslog-ng sysvinit tar texinfo usbutils util-linux vi wget which wpa_supplicant xfsprogs openssh openssl elftosb imx-bootlets-olinuxino kernel26-olinuxino openntpd net-tools"
 RELEASEVER=$(date -u +%Y.%m)
 MAKETARGZ=1
 HERE=$( cd "$( dirname "$0" )" && pwd )
