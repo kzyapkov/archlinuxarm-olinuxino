@@ -3,6 +3,7 @@
 # iMX233-OLinuXino-Maxi kernel for archlinuxarm
 # basically replicates the oe-recipe
 # see https://github.com/OSSystems/meta-fsl-arm-extra.git
+# vim:set ts=2 sw=2 et:
 
 plugrel=1
 noautobuild=1
@@ -53,8 +54,39 @@ source=(config
         002_Return_ERESTARTSYS_from_IPU_GET_EVENT.patch
         003_Sanitise_ipu_interrupt_return_value.patch
         imx233-olinuxino.patch)
-    
-  
+
+md5sums=('5c9ac66bf133fd445108bf8b56ce2861'
+         'bde087470cb0715ca709bd5bcd3803d0'
+         'ef8a1cf2d129de1a0a476a0b40e6f291'
+         'e086ab0b162d292549f9bf453e07ad2e'
+         'ff1281a87da6f8093992ad70d23e71d2'
+         '5e66409616ff8b83d6c4da27b7a20524'
+         '8bd2ccc655534a3954c7c4627504b983'
+         '5bd3f9fa736e52fc6805bb6ad31bb0fa'
+         'c32466adef3d6ef7cfbf78c82746c273'
+         '51b8c41987805f7df4940ca8acdc207f'
+         '33f10abba5e4477a869481afbd679708'
+         'a277ba90aff952c3328b0a15090f0162'
+         '1d37e5d871cc887b11f0d0526bade455'
+         'a7c588606614e54c327a81e9bf767284'
+         '2dae86eb8d34194fc7012fb054859f18'
+         '210074137b0be358a7c9ec483f7f76e6'
+         '4ccd4f497105f69930177fcffdb583c9'
+         '4cc4db3a2268b91583da861fbe064bfc'
+         'dd5fdabdf2c8609fbd8752c42f5773c2'
+         'bcba9216d3414a9de22b7d4fb24853e1'
+         'c2d9dba73587fd00d990a2521428d67b'
+         '302ad0fe4e990c789793e25ced58f712'
+         'c8894e44904cc1365e7110eb04aea1d6'
+         '14ec6ec6f9de8d1fd0333024481541af'
+         'f0ebf1f2dbfa4030ba3945fea97710a1'
+         '1d38c32d1d5348ef24745b2f38b0f040'
+         '1bf553ee320c43a8e0941274bcdb4bf2'
+         'be34abb50266df17160dd1c6170299f4'
+         '06d9896eb871dabcdb91b5f1a15bffdf'
+         'd02c1a4f67a2e5680b7e23cc5a1998cd')
+
+
 __gitname="linux-2.6-imx"
 __gitroot="git://git.freescale.com/imx/${__gitname}.git"
 __gittag="rel_imx_2.6.35_11.09.01"
@@ -151,6 +183,7 @@ package_kernel26-olinuxino() {
   #cp arch/$KARCH/boot/uImage ${pkgdir}/boot/uImage
   cp arch/$KARCH/boot/zImage ${pkgdir}/boot/zImage
   cp .config ${pkgdir}/boot/config-${_kernver}
+  cp System.map System.map-${_kernver}
 
   # set correct depmod command for install
   sed \
@@ -280,35 +313,4 @@ package_kernel26-headers-olinuxino() {
   # remove unneeded architectures
   rm -rf ${pkgdir}/usr/src/linux-${_kernver}/arch/{alpha,avr32,blackfin,cris,frv,h8300,ia64,m32r,m68k,m68knommu,mips,microblaze,mn10300,parisc,powerpc,ppc,s390,sh,sh64,sparc,sparc64,um,v850,xtensa,x86}
 }
-
-md5sums=('3bb52c21da277ac4e1605c6474c45635'
-         'bde087470cb0715ca709bd5bcd3803d0'
-         'ef8a1cf2d129de1a0a476a0b40e6f291'
-         'e086ab0b162d292549f9bf453e07ad2e'
-         'ff1281a87da6f8093992ad70d23e71d2'
-         '5e66409616ff8b83d6c4da27b7a20524'
-         '8bd2ccc655534a3954c7c4627504b983'
-         '5bd3f9fa736e52fc6805bb6ad31bb0fa'
-         'c32466adef3d6ef7cfbf78c82746c273'
-         '51b8c41987805f7df4940ca8acdc207f'
-         '33f10abba5e4477a869481afbd679708'
-         'a277ba90aff952c3328b0a15090f0162'
-         '1d37e5d871cc887b11f0d0526bade455'
-         'a7c588606614e54c327a81e9bf767284'
-         '2dae86eb8d34194fc7012fb054859f18'
-         '210074137b0be358a7c9ec483f7f76e6'
-         '4ccd4f497105f69930177fcffdb583c9'
-         '4cc4db3a2268b91583da861fbe064bfc'
-         'dd5fdabdf2c8609fbd8752c42f5773c2'
-         'bcba9216d3414a9de22b7d4fb24853e1'
-         'c2d9dba73587fd00d990a2521428d67b'
-         '302ad0fe4e990c789793e25ced58f712'
-         'c8894e44904cc1365e7110eb04aea1d6'
-         '14ec6ec6f9de8d1fd0333024481541af'
-         'f0ebf1f2dbfa4030ba3945fea97710a1'
-         '1d38c32d1d5348ef24745b2f38b0f040'
-         '1bf553ee320c43a8e0941274bcdb4bf2'
-         'be34abb50266df17160dd1c6170299f4'
-         '06d9896eb871dabcdb91b5f1a15bffdf'
-         'd02c1a4f67a2e5680b7e23cc5a1998cd')
 
