@@ -15,7 +15,7 @@
 # Agree to installing packages and answer "y" to cleaning the Pacman database.
 #
 # ==== Variables to set ====
-INSTALLEDPKGS="bash bzip2 coreutils cronie cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip heirloom-mailx inetutils initscripts iputils jfsutils less licenses logrotate lvm2 man-db man-pages mdadm nano pacman pacman-mirrorlist pciutils perl ppp procps-ng psmisc reiserfsprogs sed shadow sysfsutils syslog-ng sysvinit tar texinfo usbutils util-linux vi wget which wpa_supplicant xfsprogs openssh openssl elftosb imx-bootlets-olinuxino kernel26-olinuxino openntpd net-tools"
+INSTALLEDPKGS="bash bzip2 coreutils cronie cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip heirloom-mailx inetutils initscripts iputils jfsutils less licenses logrotate lvm2 man-db man-pages mdadm nano pacman pacman-mirrorlist pciutils perl ppp procps-ng psmisc reiserfsprogs sed shadow sysfsutils syslog-ng sysvinit tar texinfo usbutils util-linux vi wget which wpa_supplicant xfsprogs openssh openssl kernel26-olinuxino elftosb imx-bootlets-olinuxino openntpd net-tools"
 RELEASEVER=$(date -u +%Y.%m)
 MAKETARGZ=1
 HERE=$( cd "$( dirname "$0" )" && pwd )
@@ -25,7 +25,7 @@ echo  -e "\033[1mInstalling packages...\033[0m"
 mkdir -p $1/var/lib/pacman
 pacman -Syyf --noconfirm --noprogressbar --config ${HERE}/pacman.conf -r $1 $INSTALLEDPKGS
 
-# TODO: patch instead
+# TODO: patch instead?
 install --group=root --owner=root --mode=0644 ${HERE}/pacman.conf $1/etc/pacman.conf
 install --group=root --owner=root --mode=0644 ${HERE}/inittab $1/etc/inittab
 install --group=root --owner=root --mode=0644 ${HERE}/set-olinuxino-mac $1/etc/rc.d/set-olinuxino-mac
