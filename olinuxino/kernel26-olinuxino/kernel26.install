@@ -5,13 +5,16 @@ flush_kernel() {
   if [ -x  /usr/local/bin/elftosb -a -d /boot/imx-bootlets-olinuxino ]; then
     echo "elftosb and the imx-bootlets appear to be installed."
     echo -n "Do you want the new kernel flashed onto mmcblk0p1? [y|N] "
+    # something traps the last line of output, so users can't see the
+    # question ...
+    echo -n
     read -r shouldwe
     if [[ $shouldwe =~ ^([yY][eE][sS]|[yY])$ ]]; then
       cd /boot
       echo "Generating sdcard image ..."
       elftosb -z -c ./imx-bootlets-olinuxino/linux.bd -o imx23-olinuxino.sb
       echo "Flushing the image on /dev/mmcblk0p1 ..."
-      dd if=imx23-olinuxino.sb of=mx23.img ibs=512 seek=4 conv=sync,notrunc
+      dd if=imx23-olinuxino.sb of=/dev/mmcblk0p1 ibs=512 seek=4 conv=sync,notrunc
     fi
   else
     echo "elftosb and/or the imx-bootlets are not installed."

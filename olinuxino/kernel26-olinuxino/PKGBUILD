@@ -55,7 +55,7 @@ source=(config
         003_Sanitise_ipu_interrupt_return_value.patch
         imx233-olinuxino.patch)
 
-md5sums=('5c9ac66bf133fd445108bf8b56ce2861'
+md5sums=('c28bcccce17d2d01da4eba9c81873611'
          'bde087470cb0715ca709bd5bcd3803d0'
          'ef8a1cf2d129de1a0a476a0b40e6f291'
          'e086ab0b162d292549f9bf453e07ad2e'
@@ -85,7 +85,6 @@ md5sums=('5c9ac66bf133fd445108bf8b56ce2861'
          'be34abb50266df17160dd1c6170299f4'
          '06d9896eb871dabcdb91b5f1a15bffdf'
          'd02c1a4f67a2e5680b7e23cc5a1998cd')
-
 
 __gitname="linux-2.6-imx"
 __gitroot="git://git.freescale.com/imx/${__gitname}.git"
