@@ -38,7 +38,8 @@ The easiest way to put Archlinux ARM on your Olinuxino board is to use the prebu
   $ tar -C /mnt/mmc -xzf olinuxino-alarm-2012.07-rootfs.tar.gz
   $ umount /dev/mmcblk0p2
   ```
-* Put the sdcard into the olinuxino and power on!
+* Put the sdcard into the olinuxino and power on! The default `root` password 
+  is `root`.
 
 This Repository
 ---
@@ -57,6 +58,8 @@ Featured here:
   * A custom rc script sets the MAC address of the eth interface;
   * The default locale is ISO-8859-1, 64MB of ram are not sufficient to 
     generate UTF-8 locales. The workaround is to enable some swap for locale-gen.
+
+
 
 License
 ---
