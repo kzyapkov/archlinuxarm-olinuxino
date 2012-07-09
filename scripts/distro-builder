@@ -28,7 +28,7 @@ pacman -Syyf --noconfirm --noprogressbar --config ${HERE}/pacman.conf -r $1 $INS
 # TODO: patch instead?
 install --group=root --owner=root --mode=0644 ${HERE}/pacman.conf $1/etc/pacman.conf
 install --group=root --owner=root --mode=0644 ${HERE}/inittab $1/etc/inittab
-install --group=root --owner=root --mode=0644 ${HERE}/set-olinuxino-mac $1/etc/rc.d/set-olinuxino-mac
+install --group=root --owner=root --mode=0755 ${HERE}/set-olinuxino-mac $1/etc/rc.d/set-olinuxino-mac
 install --group=root --owner=root --mode=0644 ${HERE}/rc.conf $1/etc/rc.conf
 
 
