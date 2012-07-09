@@ -1,7 +1,10 @@
 ArchlinuxARM for the OLinuXino
 ===
 
-This repository includes packages needed to support ArchLinuxARM on the excellent [OLinuXino](http://www.olimex.com/dev/oli-main.html) boards made by [Olimex](http://www.olimex.com/) along with a script to generate a modified rootfs.
+This repository includes packages needed to support ArchLinuxARM on the excellent [OLinuXino](http://www.olimex.com/dev/oli-main.html) boards made by [Olimex](http://www.olimex.com/) along with a script to generate a modified rootfs. See below for a prebuilt images. This is a work in progress!
+
+There's also a repository for the packages, included in `pacman.conf` within the 
+prebuilt image. The repository url is [http://1024.cjb.net/archlinux/olinuxino/](http://1024.cjb.net/archlinux/olinuxino/).
 
 Installation
 ---
@@ -47,10 +50,7 @@ This Repository
 Featured here:
 * PKGBUILDs for packages needed to support the Olinuxino boards, only Maxi at 
   this point. The PKGBUILDs and accompanying files can be found under 
-  `olinuxino`. For info on what PKGBUILD is and how to build your own packages, 
-  see the [docs](http://archlinuxarm.org/developers/) on the 
-  [Archlinux ARM](http://archlinuxarm.org/) website, as well as the excellent 
-  documentation of [the upstream distro](https://wiki.archlinux.org/)
+  `olinuxino`.
 * A script to generate a modified root file system, under `scripts`. Minor 
   changes of system configuration packages are required to boot alarm properly
   on the board:
@@ -58,10 +58,17 @@ Featured here:
   * A custom rc script sets the MAC address of the eth interface;
   * The default locale is ISO-8859-1, 64MB of ram are not sufficient to 
     generate UTF-8 locales. The workaround is to enable some swap for locale-gen.
+  Note, that the script needs to be executed from an ArchlinuxARM host. It should
+  be possible to execute it on the Olinuxino board, but this will probably be 
+  painfully slow. A qemu host with alarm or another ARM board would work much
+  better.
 
+See Also
+---
 
+For info on what PKGBUILD is and how to build your own packages, see the [docs](http://archlinuxarm.org/developers/) on the [Archlinux ARM](http://archlinuxarm.org/) website, as well as the excellent documentation of [the upstream distro](https://wiki.archlinux.org/)
 
 License
 ---
 
-PKGBUILDs featured here use code from Freescale and code and patches from OSSystems and their Yocto layer for Olinuxino and code from ArchlinuxARM's repository. Those have their respective licenses. Everything else (i.e. the PKGBUILDs) is public domain.
+PKGBUILDs featured here use code from [Freescale](http://www.freescale.com/) and code and patches from [OSSystems](https://github.com/OSSystems/) and their [Yocto layer](https://github.com/OSSystems/meta-fsl-arm-extra) for Olinuxino and code from [ArchlinuxARM's repository](https://github.com/archlinuxarm/PKGBUILDs). Those have their respective licenses. Everything else (i.e. the PKGBUILDs here) is public domain.
