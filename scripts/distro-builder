@@ -14,11 +14,25 @@
 # NOTE: This script is interactive.
 # Agree to installing packages and answer "y" to cleaning the Pacman database.
 #
+# vim:set ts=2 sw=2 et:
 # ==== Variables to set ====
-INSTALLEDPKGS="bash bzip2 coreutils cronie cryptsetup device-mapper dhcpcd diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc grep gzip heirloom-mailx inetutils initscripts iputils jfsutils less licenses logrotate lvm2 man-db man-pages mdadm nano pacman pacman-mirrorlist pciutils perl ppp procps-ng psmisc reiserfsprogs sed shadow sysfsutils syslog-ng sysvinit tar texinfo usbutils util-linux vi wget which wpa_supplicant xfsprogs openssh openssl kernel26-olinuxino elftosb imx-bootlets-olinuxino openntpd net-tools"
+
+# Packages installed on the generated filesystem.
+# These are the packages from the "base" group less the linux* packages, plus
+# the olinuxino-specific packages (kernel and bsp support pkgs)
+INSTALLEDPKGS="bash bzip2 coreutils cronie cryptsetup device-mapper dhcpcd \
+  diffutils e2fsprogs file filesystem findutils gawk gcc-libs gettext glibc \
+  grep gzip heirloom-mailx inetutils initscripts iputils jfsutils less \
+  licenses logrotate lvm2 man-db man-pages mdadm nano pacman \
+  pacman-mirrorlist pciutils perl ppp procps-ng psmisc reiserfsprogs sed \
+  shadow sysfsutils syslog-ng sysvinit tar texinfo usbutils util-linux vi \
+  wget which wpa_supplicant xfsprogs udev-automount kernel26-olinuxino \
+  elftosb imx-bootlets-olinuxino openntpd net-tools"
+
 RELEASEVER=$(date -u +%Y.%m)
 MAKETARGZ=1
-HERE=$( cd "$( dirname "$0" )" && pwd )
+HERE=$(cd "$(dirname "$0")" && pwd)
+
 # ==== The Process ====
 mkdir -p $1
 echo  -e "\033[1mInstalling packages...\033[0m"
