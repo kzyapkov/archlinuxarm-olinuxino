@@ -1,7 +1,7 @@
 ArchlinuxARM for the OLinuXino
 ===
 
-This repository includes packages needed to support ArchLinuxARM on the excellent [OLinuXino](http://www.olimex.com/dev/oli-main.html) boards made by [Olimex](http://www.olimex.com/) along with a script to generate a modified rootfs. See below for a prebuilt images. This is a work in progress!
+This repository includes packages needed to support ArchLinuxARM on the excellent [OLinuXino](http://www.olimex.com/dev/oli-main.html) boards made by [Olimex](http://www.olimex.com/) along with a script to generate a modified rootfs. See below for prebuilt images. This is a work in progress!
 
 There's also a repository for the packages, included in `pacman.conf` within the 
 prebuilt image. The repository url is [http://1024.cjb.net/archlinux/olinuxino/](http://1024.cjb.net/archlinux/olinuxino/).
@@ -12,8 +12,8 @@ Installation
 The easiest way to put Archlinux ARM on your Olinuxino board is to use the prebuilt boot image and root file system.
 
 * Download the files.
-  * [olinuxino-boot.img](http://1024.cjb.net/archlinux/olinuxino-boot.img)
-  * [olinuxino-alarm-2012.07-rootfs.tar.gz](http://1024.cjb.net/archlinux/olinuxino-alarm-2012.07-rootfs.tar.gz)
+  * [olinuxino-boot.img](http://1024.cjb.net/archlinux/olinuxino-boot.img) md5sum: a10b71fe436bf9706737145d9765a639
+  * [olinuxino-alarm-2012.07-rootfs.tar.gz](http://1024.cjb.net/archlinux/olinuxino-alarm-2012.07-rootfs.tar.gz) md5sum: 8266f0c3bf31691fc4fe0c3c056df030
 
 * Partition your sdcard.
   You need two partitions with the following layout:
@@ -48,9 +48,9 @@ This Repository
 ---
 
 Featured here:
-* PKGBUILDs for packages needed to support the Olinuxino boards, only Maxi at 
-  this point. The PKGBUILDs and accompanying files can be found under 
-  `olinuxino`.
+* PKGBUILDs for packages needed to support the Olinuxino boards, only Maxi is
+  tested, but other iMX233 variants should boot smoothly too. The PKGBUILDs and
+  accompanying files can be found under `olinuxino/`.
 * A script to generate a modified root file system, under `scripts`. Minor 
   changes of system configuration packages are required to boot alarm properly
   on the board:
@@ -58,14 +58,14 @@ Featured here:
   * A custom rc script sets the MAC address of the eth interface;
   * The default locale is ISO-8859-1, 64MB of ram are not sufficient to 
     generate UTF-8 locales. The workaround is to enable some swap for locale-gen.
-  Note, that the script needs to be executed from an ArchlinuxARM host. It should
-  be possible to execute it on the Olinuxino board, but this will probably be 
-  painfully slow. A qemu host with alarm or another ARM board would work much
-  better.
 
-See Also
+Generating your own
 ---
 
+Everything here works on an Archlinux ARM host. It should be possible to use the Olinuxino board itself, after installing the prebuilt rootfs, but this will probably be painfully slow. A qemu host with alarm or another ARM board would work much better.
+
+The ArchlinuxARM website has guides on setting up distcc, and distcc with cross-compiling workers. The latter allows using your powerful workstations to do the heavy number crunching. According to alarm's devs, this approach is fine for testing and developing new stuff, but they always build their official packages natively.
+  
 For info on what PKGBUILD is and how to build your own packages, see the [docs](http://archlinuxarm.org/developers/) on the [Archlinux ARM](http://archlinuxarm.org/) website, as well as the excellent documentation of [the upstream distro](https://wiki.archlinux.org/)
 
 License
