@@ -1,0 +1,5 @@
+*~
+olinuxino/*/pkg/
+olinuxino/*/src/
+*.pkg.tar.gz
+*.pkg.tar.xz
