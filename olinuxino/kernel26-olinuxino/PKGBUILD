@@ -13,7 +13,7 @@ pkgname=('kernel26-olinuxino' 'kernel26-headers-olinuxino')
 _kernelname=${pkgname#kernel26}
 _basekernel=2.6
 pkgver=${_basekernel}.35.3
-pkgrel=2
+pkgrel=3
 makedepends=('xmlto' 'docbook-xsl' 'uboot-mkimage' 'make' 'git')
 optdepends=('elftosb: to install the kernel' 
             'imx-bootlets-olinuxino:  to install the kernel')
@@ -55,7 +55,7 @@ source=(config
         003_Sanitise_ipu_interrupt_return_value.patch
         imx233-olinuxino.patch)
 
-md5sums=('fb12ce11fb5f8111fb63342d054f1d85'
+md5sums=('467e49bb022eb7ef93608c6b0963a4ff'
          'bde087470cb0715ca709bd5bcd3803d0'
          'ef8a1cf2d129de1a0a476a0b40e6f291'
          'e086ab0b162d292549f9bf453e07ad2e'
