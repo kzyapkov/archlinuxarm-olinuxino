@@ -1,0 +1,26 @@
+--- common/rt_ate.c.orig	2011-07-19 10:56:36.000000000 +0200
++++ common/rt_ate.c	2011-09-30 20:47:35.000000000 +0200
+@@ -9480,6 +9480,7 @@
+ 	IN	PSTRING			arg)
+ {    
+ 	RTMP_CHIP_ATE_TSSI_CALIBRATION(pAd, arg);
++	return 0;
+ }
+ 
+ 
+@@ -9496,6 +9497,7 @@
+ 	UCHAR		CurrentChannel;
+ 	
+ 	RTMP_CHIP_ATE_TSSI_CALIBRATION_EXTEND(pAd, arg);
++	return 0;
+ }
+ #endif /* RTMP_INTERNAL_TX_ALC */
+ 
+@@ -9506,6 +9508,7 @@
+ 	IN	PSTRING			arg)
+ {
+ 	RTMP_CHIP_ATE_READ_EXTERNAL_TSSI(pAd, arg);
++	return 0;
+ }
+ #endif /* RTMP_TEMPERATURE_COMPENSATION */
+ 
