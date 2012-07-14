@@ -1,4 +1,4 @@
-# Maintainer: Kiril Zyapkov <kiril.zyapkov@gmail.com>
+# Contributor: Kiril Zyapkov <kiril.zyapkov@gmail.com>
 
 # iMX233-OLinuXino-Maxi kernel for archlinuxarm
 # basically replicates the oe-recipe
@@ -13,8 +13,8 @@ pkgname=('kernel26-olinuxino' 'kernel26-headers-olinuxino')
 _kernelname=${pkgname#kernel26}
 _basekernel=2.6
 pkgver=${_basekernel}.35.3
-pkgrel=3
-makedepends=('xmlto' 'docbook-xsl' 'uboot-mkimage' 'make' 'git')
+pkgrel=4
+makedepends=('xmlto' 'docbook-xsl' 'make' 'git')
 optdepends=('elftosb: to install the kernel' 
             'imx-bootlets-olinuxino:  to install the kernel')
 options=('!strip' '!buildflags' '!makeflags')
@@ -55,7 +55,7 @@ source=(config
         003_Sanitise_ipu_interrupt_return_value.patch
         imx233-olinuxino.patch)
 
-md5sums=('467e49bb022eb7ef93608c6b0963a4ff'
+md5sums=('d182fca7e14a186b9790331e03b02892'
          'bde087470cb0715ca709bd5bcd3803d0'
          'ef8a1cf2d129de1a0a476a0b40e6f291'
          'e086ab0b162d292549f9bf453e07ad2e'
@@ -169,7 +169,7 @@ package_kernel26-olinuxino() {
             'pwc' 'nforce' 'squashfs' 'unionfs' 'ivtv'
             'zd1211' 'kvm-modules' 'iwlwifi' 'rt2x00-cvs'
             'gspcav1' 'atl2' 'wlan-ng26' 'rt2500' 'nouveau-drm')
-  provides=("kernel26=${pkgver}")
+  provides=("kernel26=${pkgver}" "linux=${pkgver}")
   install=kernel26.install
   KARCH=arm
 
@@ -196,7 +196,7 @@ package_kernel26-olinuxino() {
 
 package_kernel26-headers-olinuxino() {
   pkgdesc="Header files and scripts for building modules for kernel26 for iMX233-OLinuXino-Maxi"
-  provides=("kernel26-headers=${pkgver}")
+  provides=("kernel26-headers=${pkgver}" "linux-headers=${pkgver}")
   KARCH=arm
 
   cd ${srcdir}/${__gitname}

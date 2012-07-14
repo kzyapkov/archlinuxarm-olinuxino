@@ -1,5 +1,5 @@
 KERNEL_NAME=-olinuxino
-KERNEL_VERSION=2.6.35-3-OLinuXino-ARCH+
+KERNEL_VERSION=2.6.35-4-OLinuXino-ARCH+
 
 flush_kernel() {
   if [ -x  /usr/local/bin/elftosb -a -d /boot/imx-bootlets-olinuxino ]; then
