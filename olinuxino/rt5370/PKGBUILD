@@ -41,6 +41,10 @@ build() {
   #Chenge some strange in Makefile
 
   patch -Np2 < ${srcdir}/strange.patch
+  patch -Np0 -i ${srcdir}/rt5370sta-2.5.0.3-WPA-mixed.patch
+  patch -Np0 -i ${srcdir}/rt5370sta-2.5.0.3-remove_date_time.patch
+  patch -Np0 -i ${srcdir}/rt5370sta-2.5.0.3-no_return_in_non_void_function.patch
+#  patch -Np0 -i ${srcdir}/rt5370sta-2.5.0.3-config.patch
 
   make
 }
