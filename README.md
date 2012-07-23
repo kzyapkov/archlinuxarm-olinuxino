@@ -1,6 +1,13 @@
 ArchlinuxARM for the OLinuXino
 ===
 
+Official support now available!
+---
+
+Please don't use these instructions anymore. ArchLinux ARM have included official support for the OLinuXino boards! Follow the [official instructions](http://archlinuxarm.org/platforms/armv5/olinuxino) to install alarm on your OLinuXino.
+
+Legacy instructions below:
+
 This repository includes packages needed to support ArchLinuxARM on the excellent [OLinuXino](http://www.olimex.com/dev/oli-main.html) boards made by [Olimex](http://www.olimex.com/) along with a script to generate a modified rootfs. See below for prebuilt images. This is a work in progress!
 
 There's also a repository for the packages, included in `pacman.conf` within the 
