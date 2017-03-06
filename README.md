@@ -8,7 +8,7 @@ Please don't use these instructions anymore. ArchLinux ARM have included officia
 
 Legacy instructions below:
 
-This repository includes packages needed to support ArchLinuxARM on the excellent [OLinuXino](http://www.olimex.com/dev/oli-main.html) boards made by [Olimex](http://www.olimex.com/) along with a script to generate a modified rootfs. See below for prebuilt images. This is a work in progress!
+This repository includes packages needed to support ArchLinuxARM on the excellent OLinuXino boards made by [Olimex](http://www.olimex.com/) along with a script to generate a modified rootfs. See below for prebuilt images. This is a work in progress!
 
 There's also a repository for the packages, included in `pacman.conf` within the 
 prebuilt image. The repository url is [http://1024.cjb.net/archlinux/olinuxino/](http://1024.cjb.net/archlinux/olinuxino/).
